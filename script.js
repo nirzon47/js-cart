@@ -3,6 +3,7 @@ const themeSwitcher = document.getElementById('theme-switcher')
 
 const minus = document.getElementsByClassName('minus')
 const plus = document.getElementsByClassName('plus')
+const count = document.getElementsByClassName('count')
 
 const cart = document.getElementById('cart-items-section')
 const totalPrice = document.getElementById('total-price')
@@ -104,6 +105,7 @@ const subtractPrice = (element) => {
 
 	if (cartItems[index].price <= 0) {
 		cartItems.splice(index, 1)
+		count[index].innerText = 0
 	}
 
 	updateCart()
@@ -150,6 +152,8 @@ const updateCart = () => {
 															item.price / products[item.id].price
 														} x $${item.price}</span>
                             </div>`
+
+		count[item.id].innerText = item.price / products[item.id].price
 	})
 
 	ifEmptyCart()
