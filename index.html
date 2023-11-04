@@ -13,8 +13,11 @@
 			src="https://kit.fontawesome.com/d521bbec8a.js"
 			crossorigin="anonymous"
 		></script>
+
+		<!-- Script -->
+		<script src="script.js" defer></script>
 	</head>
-	<body class="min-h-screen w-screen overflow-hidden">
+	<body class="min-h-screen w-screen overflow-x-hidden">
 		<!-- Header -->
 		<header
 			class="h-16 md:h-20 w-screen bg-primary flex justify-between md:px-16 px-4 items-center text-primary-content"
@@ -29,6 +32,7 @@
 				<a
 					class="md:text-2xl text-xl"
 					href="https://github.com/nirzon47/js-cart"
+					target="_blank"
 				>
 					<i class="fa-brands fa-github"></i
 				></a>
@@ -36,7 +40,7 @@
 				<!-- Theme button -->
 				<label class="swap swap-rotate">
 					<!-- this hidden checkbox controls the state -->
-					<input type="checkbox" />
+					<input type="checkbox" id="theme-switcher" />
 
 					<!-- sun icon -->
 					<svg
@@ -88,10 +92,14 @@
 						<div class="card-body">
 							<h2 class="card-title justify-center pb-4">Item - 1</h2>
 							<div class="card-actions justify-center">
-								<div class="join">
-									<button class="btn join-item btn-primary btn-sm">-</button>
+								<div class="join" id="0">
+									<button class="btn join-item btn-primary btn-sm minus">
+										-
+									</button>
 									<span class="btn join-item btn-primary btn-sm">0</span>
-									<button class="btn join-item btn-primary btn-sm">+</button>
+									<button class="btn join-item btn-primary btn-sm plus">
+										+
+									</button>
 								</div>
 							</div>
 						</div>
@@ -108,10 +116,14 @@
 						<div class="card-body">
 							<h2 class="card-title justify-center pb-4">Item - 2</h2>
 							<div class="card-actions justify-center">
-								<div class="join">
-									<button class="btn join-item btn-primary btn-sm">-</button>
+								<div class="join" id="1">
+									<button class="btn join-item btn-primary btn-sm minus">
+										-
+									</button>
 									<span class="btn join-item btn-primary btn-sm">0</span>
-									<button class="btn join-item btn-primary btn-sm">+</button>
+									<button class="btn join-item btn-primary btn-sm plus">
+										+
+									</button>
 								</div>
 							</div>
 						</div>
@@ -128,10 +140,14 @@
 						<div class="card-body">
 							<h2 class="card-title justify-center pb-4">Item - 3</h2>
 							<div class="card-actions justify-center">
-								<div class="join">
-									<button class="btn join-item btn-primary btn-sm">-</button>
+								<div class="join" id="2">
+									<button class="btn join-item btn-primary btn-sm minus">
+										-
+									</button>
 									<span class="btn join-item btn-primary btn-sm">0</span>
-									<button class="btn join-item btn-primary btn-sm">+</button>
+									<button class="btn join-item btn-primary btn-sm plus">
+										+
+									</button>
 								</div>
 							</div>
 						</div>
@@ -148,10 +164,14 @@
 						<div class="card-body">
 							<h2 class="card-title justify-center pb-4">Item - 4</h2>
 							<div class="card-actions justify-center">
-								<div class="join">
-									<button class="btn join-item btn-primary btn-sm">-</button>
+								<div class="join" id="3">
+									<button class="btn join-item btn-primary btn-sm minus">
+										-
+									</button>
 									<span class="btn join-item btn-primary btn-sm">0</span>
-									<button class="btn join-item btn-primary btn-sm">+</button>
+									<button class="btn join-item btn-primary btn-sm plus">
+										+
+									</button>
 								</div>
 							</div>
 						</div>
@@ -160,20 +180,28 @@
 			</div>
 
 			<!-- Cart -->
-			<div class="col-span-3">
+			<div class="col-span-3 text-center">
 				<!-- Cart Heading -->
 				<h2 class="text-lg font-semibold mt-8 mb-4 md:text-xl">
 					Shopping Cart
 				</h2>
 
 				<!-- Cart Items -->
-				<section class="mb-4">
-					<p class="md:text-lg">Your cart is empty</p>
+				<section
+					class="mb-4 lg:h-80 flex flex-col gap-y-2"
+					id="cart-items-section"
+				>
+					<div
+						class="alert max-w-[20rem] mx-auto flex justify-around outline-none"
+					>
+						<span>Your cart is empty</span>
+					</div>
 				</section>
 
 				<!-- Cart Total -->
-				<p class="font-medium text-primary-content md:text-lg">
-					Total amount: ₹<span>0</span>
+				<p class="font-bold md:text-lg mt-auto">
+					Total amount:
+					<span class="text-secondary">$<span id="total-price">0</span></span>
 				</p>
 			</div>
 		</main>
