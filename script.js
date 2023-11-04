@@ -5,7 +5,6 @@ const plus = document.getElementsByClassName('plus')
 
 const cart = document.getElementById('cart-items-section')
 const totalPrice = document.getElementById('total-price')
-const emptyMessage = document.getElementById('empty-message')
 
 const products = [
 	{ id: 0, name: 'Item - 1', price: 100 },
@@ -28,6 +27,15 @@ Array.from(plus).forEach((element) => {
 themeSwitcher.addEventListener('click', () => themeChanger())
 
 // Functions
+
+const themeChanger = () => {
+	if (document.documentElement.getAttribute('data-theme') === 'light') {
+		document.documentElement.setAttribute('data-theme', 'dark')
+	} else {
+		document.documentElement.setAttribute('data-theme', 'light')
+	}
+}
+
 const findItemIndex = (itemId) =>
 	cartItems.findIndex((item) => item.id === itemId)
 
@@ -63,18 +71,6 @@ const subtractPrice = (element) => {
 	updateCart()
 }
 
-const updateCart = () => {
-	cart.innerHTML = ''
-
-	cartItems.forEach((item) => {
-		cart.innerHTML += `<div class="alert max-w-[20rem] mx-auto flex justify-around outline-none">
-                            <span>${item.name}</span><span>$${item.price}</span>
-                            </div>`
-	})
-
-	calculateTotalPrice()
-}
-
 const calculateTotalPrice = () => {
 	let total = 0
 	cartItems.forEach((item) => {
@@ -84,10 +80,23 @@ const calculateTotalPrice = () => {
 	totalPrice.innerText = total
 }
 
-const themeChanger = () => {
-	if (document.documentElement.getAttribute('data-theme') === 'light') {
-		document.documentElement.setAttribute('data-theme', 'dark')
-	} else {
-		document.documentElement.setAttribute('data-theme', 'light')
+const ifEmptyCart = () => {
+	if (cartItems.length === 0) {
+		cart.innerHTML = `<div class="alert max-w-[20rem] mx-auto flex justify-around outline-none">
+                            <span>Your cart is empty</span>
+                        </div>`
 	}
+}
+
+const updateCart = () => {
+	cart.innerHTML = ''
+
+	cartItems.forEach((item) => {
+		cart.innerHTML += `<div class="alert max-w-[20rem] mx-auto flex justify-around outline-none">
+                            <span>${item.name}</span><span>$${item.price}</span>
+                            </div>`
+	})
+
+	ifEmptyCart()
+	calculateTotalPrice()
 }
