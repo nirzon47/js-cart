@@ -3,7 +3,9 @@ const themeSwitcher = document.getElementById('theme-switcher')
 
 const minus = document.getElementsByClassName('minus')
 const plus = document.getElementsByClassName('plus')
-const count = document.getElementsByClassName('count')
+const counter = document.getElementsByClassName('count')
+
+const count = [0, 0, 0, 0]
 
 const cart = document.getElementById('cart-items-section')
 const totalPrice = document.getElementById('total-price')
@@ -79,10 +81,14 @@ const addPrice = (element) => {
 
 	if (!findIfExists(id)) {
 		cartItems.push({ ...products[id] })
+		count[id] += 1
 	} else {
 		const index = findItemIndex(id)
 		cartItems[index].price += products[id].price
+		count[id] += 1
 	}
+
+	counter[id].innerText = count[id]
 
 	updateCart()
 }
@@ -103,9 +109,11 @@ const subtractPrice = (element) => {
 	const index = findItemIndex(id)
 	cartItems[index].price -= products[id].price
 
+	count[id] -= 1
+	counter[id].innerText = count[id]
+
 	if (cartItems[index].price <= 0) {
 		cartItems.splice(index, 1)
-		count[index].innerText = 0
 	}
 
 	updateCart()
@@ -152,8 +160,6 @@ const updateCart = () => {
 															item.price / products[item.id].price
 														} x $${item.price}</span>
                             </div>`
-
-		count[item.id].innerText = item.price / products[item.id].price
 	})
 
 	ifEmptyCart()
