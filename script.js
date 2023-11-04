@@ -146,7 +146,9 @@ const updateCart = () => {
 
 	cartItems.forEach((item) => {
 		cart.innerHTML += `<div class="alert max-w-[20rem] mx-auto flex justify-around outline-none">
-                            <span>${item.name}</span><span>$${item.price}</span>
+                            <span>${item.name}</span><span>${
+															item.price / products[item.id].price
+														} x $${item.price}</span>
                             </div>`
 	})
 
